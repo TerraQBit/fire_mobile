@@ -34,6 +34,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  flutter_screenutil: ^5.0.1+2
+  google_fonts: ^2.1.0
+  flutter_glow: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -51,7 +54,21 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
+  assets:
+    - assets/
+  fonts:
+    - family: Digital7
+      fonts:
+        - asset: assets/fonts/digital-7.ttf
+    - family: Digital7Italic
+      fonts:
+        - asset: assets/fonts/digital-7 (italic).ttf
+    - family: Digital7Mono
+      fonts:
+        - asset: assets/fonts/digital-7 (mono).ttf
+    - family: Digital7MonoItalic
+      fonts:
+        - asset: assets/fonts/digital-7 (mono italic).ttf
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
