@@ -16,8 +16,24 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
   bool isOpenedFire = false;
   bool isCharity = false;
 
+  late double little;
+  late double small;
+  late double big;
+
   @override
   Widget build(BuildContext context) {
+
+    if (MediaQuery.of(context).size.height > 600) {
+      little = 14.sp;
+      small = 18.sp;
+      big = 24.sp;
+    }
+    else {
+      little = 10.sp;
+      small = 14.sp;
+      big = 18.sp;
+    }
+
     return SafeArea(
         child: Scaffold(
             body: Center(
@@ -68,24 +84,24 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                           ],
                         ),
                         SizedBox(
-                          height: 100.r,
-                          width: 100.r,
+                          height: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
+                          width: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
                           child: Image.asset('assets/default_avatar.png'),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 20.r),
-                          child: Text('User123', style: GoogleFonts.montserrat(color: Colors.white, fontSize: 24.r),),
+                          child: Text('User123', style: GoogleFonts.montserrat(color: Colors.white, fontSize: big),),
                         ),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.r),
-                          child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontSize: 14.r),),
+                          child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontSize: little),),
                         ),
                         const Spacer(),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 10.r),
                           child: Align(
                             alignment: Alignment.centerLeft,
-                            child: Text('Privacy', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 24.r),),
+                            child: Text('Privacy', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big),),
                           ),
                         ),
                         const Spacer(),
@@ -96,7 +112,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                               children: [
                                 Row(
                                   children: [
-                                    Text('Opened fire', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 18.r),),
+                                    Text('Opened fire', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: small),),
                                     Padding(
                                       padding: EdgeInsets.symmetric(horizontal: 10.r),
                                       child: GestureDetector(
@@ -142,7 +158,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Text('Charity', softWrap: false, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 18.r),),
+                                        Text('Charity', softWrap: false, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: small),),
                                         Padding(
                                           padding: EdgeInsets.symmetric(horizontal: 10.r),
                                           child: GestureDetector(
@@ -155,7 +171,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                                         ),
                                       ],
                                     ),
-                                    Text('give to charity 30%', style: GoogleFonts.overpassMono(color: Color.fromRGBO(180, 180, 180, 1), fontSize: 18.r),)
+                                    Text('give to charity 30%', style: GoogleFonts.overpassMono(color: Color.fromRGBO(180, 180, 180, 1), fontSize: small),)
                                   ],
                                 ),
                                 GestureDetector(
@@ -188,7 +204,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 SizedBox(
-                                  width: 240.r,
+                                  width: MediaQuery.of(context).size.height > 600 ? 240.r : 200.r,
                                   child: Image.asset('assets/Sign in with Apple.png'),
                                 ),
                               ],
@@ -202,7 +218,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 SizedBox(
-                                  width: 240.r,
+                                  width: MediaQuery.of(context).size.height > 600 ? 240.r : 200.r,
                                   child: Image.asset('assets/Sign in with Google.png'),
                                 ),
                               ],
@@ -216,7 +232,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                               mainAxisSize: MainAxisSize.max,
                               children: [
                                 SizedBox(
-                                  width: 240.r,
+                                  width: MediaQuery.of(context).size.height > 600 ? 240.r : 200.r,
                                   child: Image.asset('assets/Sign in with Facebook.png'),
                                 ),
                               ],
@@ -236,7 +252,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10.r),
-                                  child: GlowText('Share app', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 24.r),),
+                                  child: GlowText('Share app', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big),),
                                 )
                               ],
                             )

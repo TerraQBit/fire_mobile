@@ -37,8 +37,15 @@ dependencies:
   flutter_screenutil: ^5.0.1+2
   google_fonts: ^2.1.0
   flutter_glow: ^0.2.0
+  intl: ^0.17.0
+  auto_route: ^3.2.0
+  smooth_page_indicator: ^1.0.0+2
+  onboarding: ^2.1.0
+  introduction_screen: ^2.1.0
 
 dev_dependencies:
+  auto_route_generator: ^3.1.0
+  build_runner:
   flutter_test:
     sdk: flutter
 

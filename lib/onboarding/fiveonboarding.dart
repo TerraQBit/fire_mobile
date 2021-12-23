@@ -1,3 +1,5 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -71,6 +73,9 @@ class _FiveOnboardingPageState extends State<FiveOnboardingPage> {
                               height: 20,
                             ),
                             GestureDetector(
+                              onTap: () {
+                                context.navigateTo(const HomeRouter());
+                              },
                               child: SizedBox(
                                 width: 210.r,
                                 child: Text('Login without registration', style: GoogleFonts.montserrat(fontSize: 16, color: Colors.white, fontWeight: FontWeight.w300)),

@@ -1,3 +1,5 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,37 +37,46 @@ class _SecondOnboardingPageState extends State<SecondOnboardingPage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget> [
-                        SizedBox(
-                          height: 100.r,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            SizedBox(
-                              width: 92.r,
+                        Container(
+                          decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage("assets/little_fire.png"),
+                              repeat: ImageRepeat.repeat
                             ),
-                            SizedBox(
-                              child: Center(
-                                child: SizedBox(
-                                  width: 150.r,
-                                    child: Image.asset('assets/Frame.png')
-                                ),
+                          ),
+                          child: Column(
+                            children: [
+                              MediaQuery.of(context).size.height > 600 ? SizedBox(height: 100.r) : const SizedBox(),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  SizedBox(
+                                    width: 82.r,
+                                  ),
+                                  SizedBox(
+                                    child: Center(
+                                      child: SizedBox(
+                                          width: 140.r,
+                                          child: Image.asset('assets/Frame.png')
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    child: Center(
+                                      child: SizedBox(
+                                          width: 82.r,
+                                          child: Image.asset('assets/69m.png')
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            SizedBox(
-                              child: Center(
-                                child: SizedBox(
-                                  width: 92.r,
-                                    child: Image.asset('assets/69m.png')
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          )
                         ),
-                        SizedBox(
-                          height: 60.r,
-                        ),
+                        const Spacer(),
                         Text('Light your fire!', style: GoogleFonts.overpassMono(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold)),
+                        const Spacer(),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 40.r, vertical: 20.r),
                           child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor', style: GoogleFonts.overpassMono(fontSize: 12, color: Colors.white)),
@@ -77,16 +88,22 @@ class _SecondOnboardingPageState extends State<SecondOnboardingPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               GestureDetector(
+                                  onTap: () {
+                                    context.navigateTo(const HomeRouter());
+                                  },
                                   child: Text('Skip', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400))
                               ),
                               GestureDetector(
+                                  onTap: () {
+                                    context.navigateTo(const ThirdOnboardingRouter());
+                                  },
                                   child: Row(
                                     children: [
                                       Text('Next', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400)),
                                       SizedBox(
                                         height: 30.r,
                                         child: Image.asset('assets/right.png'),
-                                      )
+                                      ),
                                     ],
                                   )
                               ),

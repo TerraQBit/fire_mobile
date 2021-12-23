@@ -23,8 +23,8 @@ class _FirstOnboardingPageState extends State<FirstOnboardingPage> {
                       end:
                       Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
                       colors: <Color>[
-                        Color.fromRGBO(100, 141, 172, 1),
-                        Color.fromRGBO(147, 175, 197, 1),
+                        Color.fromRGBO(86, 96, 128, 1),
+                        Color.fromRGBO(79, 66, 106, 1),
                       ], // red to yellow
                       tileMode: TileMode.repeated, // repeats the gradient over the canvas
                     ),

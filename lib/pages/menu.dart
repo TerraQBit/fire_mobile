@@ -13,8 +13,22 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
 
+  late double little;
+  late double small;
+  late double big;
+
   @override
   Widget build(BuildContext context) {
+    if (MediaQuery.of(context).size.height > 600) {
+      little = 14.sp;
+      small = 18.sp;
+      big = 24.sp;
+    }
+    else {
+      little = 10.sp;
+      small = 14.sp;
+      big = 18.sp;
+    }
     return SafeArea(
         child: Scaffold(
             body: Center(
@@ -59,16 +73,14 @@ class _MenuPageState extends State<MenuPage> {
                           width: 160.r,
                           child: Image.asset('assets/fire_of_fame.png'),
                         ),
-                        SizedBox(
-                          height: 80.r,
-                        ),
+                        const Spacer(),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 13.r),
                           child: GestureDetector(
                             child: SizedBox(
                               child: GlowText(
                                 'Settings',
-                                style: GoogleFonts.overpassMono(fontSize: 24.r, color: Colors.white),
+                                style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                               ),
                             ),
                           )
@@ -79,7 +91,7 @@ class _MenuPageState extends State<MenuPage> {
                               child: SizedBox(
                                 child: GlowText(
                                   'Fire',
-                                  style: GoogleFonts.overpassMono(fontSize: 24.r, color: Colors.white),
+                                  style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                                 ),
                               ),
                             )
@@ -90,7 +102,7 @@ class _MenuPageState extends State<MenuPage> {
                               child: SizedBox(
                                 child: GlowText(
                                   'Rating',
-                                  style: GoogleFonts.overpassMono(fontSize: 24.r, color: Colors.white),
+                                  style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                                 ),
                               ),
                             )
@@ -101,7 +113,7 @@ class _MenuPageState extends State<MenuPage> {
                               child: SizedBox(
                                 child: GlowText(
                                   'TOP countries',
-                                  style: GoogleFonts.overpassMono(fontSize: 24.r, color: Colors.white),
+                                  style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                                 ),
                               ),
                             )
@@ -112,7 +124,7 @@ class _MenuPageState extends State<MenuPage> {
                               child: SizedBox(
                                 child: GlowText(
                                   'The color of my fire',
-                                  style: GoogleFonts.overpassMono(fontSize: 24.r, color: Colors.white),
+                                  style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                                 ),
                               ),
                             )
@@ -123,7 +135,7 @@ class _MenuPageState extends State<MenuPage> {
                               child: SizedBox(
                                 child: GlowText(
                                   'Shop',
-                                  style: GoogleFonts.overpassMono(fontSize: 24.r, color: Colors.white),
+                                  style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                                 ),
                               ),
                             )
@@ -134,7 +146,7 @@ class _MenuPageState extends State<MenuPage> {
                           child: SizedBox(
                             child: GlowText(
                               'ver 1.0',
-                              style: GoogleFonts.overpassMono(fontSize: 10.r, color: Colors.white),
+                              style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                             ),
                           ),
                         )

@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,6 +36,33 @@ class Number extends StatelessWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  late DateTime now;
+  late String HoursString;
+  var HoursInt;
+  late String MinutesString;
+  var MinutesInt;
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    HoursString = DateFormat('H').format(now);
+    MinutesString = DateFormat('m').format(now);
+    setState(() {
+      MinutesInt = int.parse(MinutesString);
+      HoursInt = int.parse(HoursString);
+    });
+  }
+
+  @override
+  void initState() {
+    now = DateTime.now();
+    HoursString = DateFormat('H').format(now);
+    HoursInt = int.parse(HoursString);
+    MinutesString = DateFormat('m').format(now);
+    MinutesInt = int.parse(MinutesString);
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,31 +117,26 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Stack(
                           children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(left: 15.r),
-                              child: GestureDetector(
-                                child: SizedBox(
-                                  child: Center(
-                                    child: SizedBox(
-                                        height: 130.r,
-                                        width: 25.r,
-                                        child: Align(
-                                          alignment: Alignment.topCenter,
-                                          child: Image.asset('assets/share.png')),
-                                        ),
-                                  ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: EdgeInsets.only(left: 20.r, top: 12.r),
+                                child: GestureDetector(
+                                  onTap: () {
+
+                                  },
+                                  child: SizedBox(
+                                      height: 20.r,
+                                      child: Image.asset('assets/share.png')),
                                 ),
                               ),
                             ),
-                            const Spacer(),
                             GestureDetector(
                               child: SizedBox(
                                 child: Center(
                                   child: SizedBox(
-                                    height: 150.r,
                                     width: 130.r,
                                     child: Align(
                                         alignment: Alignment.topCenter,
@@ -130,16 +155,16 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                                 Row(
                                                   children: [
-                                                    Number(number: '1', opacity: 1, r: 255, g: 255, b: 255,),
-                                                    Number(number: '2', opacity: 1, r: 255, g: 255, b: 255,),
+                                                    Number(number: (HoursInt~/10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
+                                                    Number(number: (HoursInt%10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
                                                     Text(':', style: TextStyle(fontFamily: 'Digital7', fontSize: 61, color: Colors.white)),
-                                                    Number(number: '4', opacity: 1, r: 255, g: 255, b: 255,),
-                                                    Number(number: '7', opacity: 1, r: 255, g: 255, b: 255,),
+                                                    Number(number: (MinutesInt~/10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
+                                                    Number(number: (MinutesInt%10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
                                                   ],
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 12),
+                                            const SizedBox(height: 25),
                                             Stack(
                                               children: [
                                                 Padding(
@@ -170,19 +195,19 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             ),
-                            const Spacer(),
-                            Padding(
-                              padding: EdgeInsets.only(right: 10.r),
-                              child: GestureDetector(
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 10.r, top: 10.r),
+                                child: GestureDetector(
                                   onTap: () {
                                   },
                                   child: SizedBox(
-                                    height: 130.r,
-                                    width: 35.r,
-                                    child: Image.asset('assets/building.png'),
-                                  )
+                                      height: 140.r,
+                                      child: Image.asset('assets/building_right.png')),
+                                ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ],
