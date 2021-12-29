@@ -17,10 +17,15 @@ class _MainPageState extends State<StatefulWidget> {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       routes: const [
+        FirstOnboardingRouter(),
         SecondOnboardingRouter(),
         ThirdOnboardingRouter(),
         FourthOnboardingRouter(),
-        FiveOnboardingRouter()
+        FiveOnboardingRouter(),
+        MenuRouter(),
+        PersonalAreaUnknowRouter(),
+        PersonalAreaEditingRouter(),
+        PersonalAreaRouter(),
       ],
       builder: (context, child, animation) {
         return Scaffold(

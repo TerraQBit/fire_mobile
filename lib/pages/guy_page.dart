@@ -4,49 +4,44 @@ import 'dart:ui';
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
+import 'package:fire_mobile/pages/rating.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key,}) : super(key: key);
+import 'home_page.dart';
+
+class GuyPage extends StatefulWidget {
+  const GuyPage({Key? key, required this.name, required this.isFollow}) : super(key: key);
+
+  final String name;
+  final bool isFollow;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _GuyPageState createState() => _GuyPageState();
 }
 
-class Number extends StatelessWidget {
+class _GuyPageState extends State<GuyPage> {
 
-  final String number;
-  final double opacity;
-  final int r;
-  final int g;
-  final int b;
+  late double little;
+  late double vlittle;
+  late double small;
+  late double big;
+  late double vbig;
 
-  const Number({ required this.number, required this.opacity, required this.r, required this.g, required this.b });
+  bool onTaped = false;
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 29,
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: Text(number, style: TextStyle(fontFamily: 'Digital7', fontSize: 61, color: Color.fromRGBO(r, g, b, opacity))),
-      ),
-    );
-  }
-}
-
-class _HomePageState extends State<HomePage> {
+  List pictures = [Image.asset('assets/Frame.png'), Image.asset('assets/building2.png'), Image.asset('assets/Frame.png')];
 
   late DateTime now;
   late String HoursString;
   var HoursInt;
   late String MinutesString;
   var MinutesInt;
-  bool isOpened = false;
+  bool isOpened = true;
   int fireCount = 0;
 
   void _getTime() {
@@ -72,7 +67,148 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    if (MediaQuery.of(context).size.height > 600) {
+      little = 14.sp;
+      vlittle = 12.sp;
+      small = 18.sp;
+      big = 24.sp;
+      vbig = 32.sp;
+    }
+    else {
+      little = 10.sp;
+      vlittle = 8.sp;
+      small = 14.sp;
+      big = 18.sp;
+      vbig = 24.sp;
+    }
+
+    return onTaped == false ? Scaffold(
+        body: ColorfulSafeArea(
+          color: const Color.fromRGBO(79, 66, 106, 1),
+          child: Center(
+            child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end:
+                    Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
+                    colors: <Color>[
+                      Color.fromRGBO(86, 96, 128, 1),
+                      Color.fromRGBO(79, 66, 106, 1),
+                    ],
+                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
+                  ),
+                  image: DecorationImage(
+                      image: AssetImage("assets/background.png"),
+                      repeat: ImageRepeat.repeat
+                  ),
+                ),
+                child: Center(
+                  child: Column (
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget> [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(10.r),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const RatingPage(),
+                                  ),
+                                );
+                              },
+                              child: SizedBox(
+                                height: 25.r,
+                                width: 25.r,
+                                child: Image.asset('assets/left.png'),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.all(10.r),
+                            child: GestureDetector(
+                              onTap: () {
+                                context.navigateTo(HomeRouter());
+                              },
+                              child: SizedBox(
+                                height: 30.r,
+                                width: 30.r,
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
+                        width: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
+                        child: Image.asset('assets/avatar.png'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 20.r),
+                        child: Text(widget.name, style: GoogleFonts.montserrat(color: Colors.white, fontSize: big),),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.r),
+                        child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontSize: little),),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 10.r),
+                        child: GlowText(widget.isFollow ? 'Follow' : 'Unfollow', style: GoogleFonts.montserrat(color: Colors.white, fontSize: small),),
+                      ),
+                      Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 85, top: 22),
+                              child: GestureDetector(
+                                child: SizedBox(
+                                  width: 30,
+                                  child: Text('100', textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 15, color: Colors.white)),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: SizedBox(
+                              width: 130,
+                              child: Image.asset('assets/shutUPandtakeMyMoney.png'),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 85, top: 22),
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    setState(() {
+                                      onTaped = true;
+                                    });
+                                  });
+                                },
+                                child: Container(
+                                  width: 20,
+                                  height: 20,
+                                  child: Image.asset('assets/+.png'),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+            ),
+          ),
+        )
+    ) : Scaffold(
         body: ColorfulSafeArea(
           top: false,
           color: const Color(0xff566080),
@@ -182,11 +318,6 @@ class _HomePageState extends State<HomePage> {
                                           ),
                                           const SizedBox(height: 25),
                                           GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                isOpened = true;
-                                              });
-                                            },
                                             child: Stack(
                                               children: [
                                                 Padding(
@@ -241,10 +372,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   )
               ),
-              isOpened == true ?
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
+              SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
                         sigmaX: 9,
@@ -276,8 +406,8 @@ class _HomePageState extends State<HomePage> {
                               GestureDetector(
                                   onTap: () {
                                     setState(() {
-                                      isOpened = false;
                                       fireCount = 0;
+                                      onTaped = false;
                                     });
                                   },
                                   child: SizedBox(
@@ -355,9 +485,6 @@ class _HomePageState extends State<HomePage> {
                           GestureDetector(
                             onTap: () {
                               context.navigateTo(const ShopRouter());
-                              setState(() {
-                                isOpened = false;
-                              });
                             },
                             child: GlowText(
                               'Shop',
@@ -376,8 +503,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   )
               )
-                  :
-                  SizedBox()
             ],
           ),
         )
