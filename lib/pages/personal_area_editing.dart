@@ -71,16 +71,16 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               child: SizedBox(
-                                height: 25.r,
-                                width: 25.r,
+                                height: 20.r,
+                                width: 20.r,
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               onTap: () {
                                 context.navigateTo(const PersonalAreaRouter());
@@ -100,7 +100,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                         child: Image.asset('assets/editing_avatar.png'),
                       ),
                       Padding(
-                          padding: EdgeInsets.only(top: 20.r, left: 10.r, right: 10.r),
+                          padding: EdgeInsets.only(top: 20.r, left: 20.r, right: 20.r),
                           child: Container(
                             height: 50.r,
                             child: TextField(
@@ -123,7 +123,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                           )
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
+                        padding: EdgeInsets.symmetric(horizontal: 20.r, vertical: 10.r),
                         child: Container(
                           height: 50.r,
                           decoration: BoxDecoration(
@@ -135,7 +135,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                                 Radius.circular(15.0) //                 <--- border radius here
                             ),
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 5.r),
+                          padding: EdgeInsets.symmetric(horizontal: 15.r),
                           child: Align(
                               alignment: Alignment.centerLeft,
                               child: Container(
@@ -172,7 +172,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                       ),
                       const Spacer(),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.r),
+                        padding: EdgeInsets.symmetric(horizontal: 20.r),
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text('Privacy', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big),),
@@ -180,7 +180,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -222,7 +222,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -270,7 +270,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
@@ -298,7 +298,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
@@ -309,7 +309,7 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             mainAxisSize: MainAxisSize.max,

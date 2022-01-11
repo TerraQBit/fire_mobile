@@ -1,5 +1,6 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
-import 'package:fire_mobile/pages/shop.dart';
+import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
@@ -102,80 +103,73 @@ class _BuyBacksPageState extends State<BuyBacksPage> {
                   fit: BoxFit.fill
               ),
             ),
-            child: Expanded(
-              child:Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.all(10.r),
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ShopPage(),
-                              ),
-                            );
-                          },
-                          child: SizedBox(
-                            height: 30.r,
-                            child: Image.asset('assets/left.png'),
-                          ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(10.r),
+                      child: GestureDetector(
+                        onTap: () {
+                          context.navigateTo(const ShopRouter());
+                        },
+                        child: SizedBox(
+                          height: 30.r,
+                          child: Image.asset('assets/left.png'),
                         ),
-                      )
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: ListView (
+                    children:[
+                      Text('Buy firebaks', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig)),
+                      const SizedBox(height: 40),
+                      Element(name: 'Firebaks', hint: widget.money, big: big, small: small),
+                      const SizedBox(height: 20),
+                      Element(name: 'Card number', big: big, small: small),
+                      const SizedBox(height: 20),
+                      Element(name: 'Card holder', big: big, small: small),
+                      const SizedBox(height: 20),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Element(big: big, small: small, name: 'Expires'),
+                          ),
+                          Expanded(
+                            child: Element(big: big, small: small, name: 'CVC'),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      GlowText(
+                        'Amount: ' + widget.money + '\$',
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
+                      ),
+                      const SizedBox(height: 20),
+                      GestureDetector(
+                        child: SizedBox(
+                          height: 55,
+                          child: Image.asset('assets/pay.png'),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      GestureDetector(
+                        child: SizedBox(
+                          height: 55,
+                          child: Image.asset('assets/unlock.png'),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
                     ],
                   ),
-                  Expanded(
-                    child: ListView (
-                      children:[
-                        Text('Buy firebaks', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig)),
-                        const SizedBox(height: 40),
-                        Element(name: 'Firebaks', hint: widget.money, big: big, small: small),
-                        const SizedBox(height: 20),
-                        Element(name: 'Card number', big: big, small: small),
-                        const SizedBox(height: 20),
-                        Element(name: 'Card holder', big: big, small: small),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Element(big: big, small: small, name: 'Expires'),
-                            ),
-                            Expanded(
-                              child: Element(big: big, small: small, name: 'CVC'),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        GlowText(
-                          'Amount: ' + widget.money + '\$',
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
-                        ),
-                        const SizedBox(height: 20),
-                        GestureDetector(
-                          child: SizedBox(
-                            height: 55,
-                            child: Image.asset('assets/pay.png'),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        GestureDetector(
-                          child: SizedBox(
-                            height: 55,
-                            child: Image.asset('assets/unlock.png'),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             )
           ),
         )

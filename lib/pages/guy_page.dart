@@ -88,19 +88,9 @@ class _GuyPageState extends State<GuyPage> {
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end:
-                    Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-                    colors: <Color>[
-                      Color.fromRGBO(86, 96, 128, 1),
-                      Color.fromRGBO(79, 66, 106, 1),
-                    ],
-                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
-                  ),
                   image: DecorationImage(
-                      image: AssetImage("assets/background.png"),
-                      repeat: ImageRepeat.repeat
+                      image: AssetImage("assets/little_fire.png"),
+                      fit: BoxFit.fill
                   ),
                 ),
                 child: Center(
@@ -111,7 +101,7 @@ class _GuyPageState extends State<GuyPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -129,7 +119,7 @@ class _GuyPageState extends State<GuyPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               onTap: () {
                                 context.navigateTo(HomeRouter());

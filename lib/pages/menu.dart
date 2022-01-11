@@ -169,9 +169,9 @@ class _MenuPageState extends State<MenuPage> {
                       Padding(
                         padding: EdgeInsets.only(bottom: 10.r),
                         child: SizedBox(
-                          child: GlowText(
-                            'ver 1.0',
-                            style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
+                          child: Text(
+                            'Ver 1.0',
+                            style: GoogleFonts.overpassMono(fontSize: little, color: Colors.white),
                           ),
                         ),
                       )

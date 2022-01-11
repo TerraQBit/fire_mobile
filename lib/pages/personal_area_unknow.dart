@@ -64,17 +64,17 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               child: SizedBox(
-                                height: 25.r,
-                                width: 25.r,
+                                height: 20.r,
+                                width: 20.r,
                                 child: Image.asset('assets/edit.png'),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               child: SizedBox(
                                 height: 30.r,

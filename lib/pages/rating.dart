@@ -51,19 +51,10 @@ class _RatingPageState extends State<RatingPage> {
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end:
-                    Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-                    colors: <Color>[
-                      Color.fromRGBO(86, 96, 128, 1),
-                      Color.fromRGBO(79, 66, 106, 1),
-                    ],
-                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
-                  ),
                   image: DecorationImage(
-                      image: AssetImage("assets/background.png"),
-                      repeat: ImageRepeat.repeat
+                      image: AssetImage("assets/second_background.png"),
+                      repeat: ImageRepeat.repeat,
+                      fit: BoxFit.fill
                   ),
                 ),
                 child: Center(
@@ -74,19 +65,20 @@ class _RatingPageState extends State<RatingPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               onTap: () {
                                 context.navigateTo(const MenuRouter());
                               },
                               child: SizedBox(
-                                height: 30.r,
+                                height: 25.r,
+                                width: 25.r,
                                 child: Image.asset('assets/left.png'),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               child: SizedBox(
                                 height: 30.r,
@@ -111,7 +103,7 @@ class _RatingPageState extends State<RatingPage> {
                                 )
                             ),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: EdgeInsets.symmetric(horizontal: 20),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -196,7 +188,10 @@ class _RatingPageState extends State<RatingPage> {
                                           ],
                                         ),
                                       ),
-                                      Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 10),
+                                        child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                      ),
                                     ],
                                   ),
                                 );
@@ -299,7 +294,10 @@ class _RatingPageState extends State<RatingPage> {
                                                 ],
                                               ),
                                             ),
-                                            Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                            Padding(
+                                              padding: EdgeInsets.only(right: 10),
+                                              child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                            ),
                                           ],
                                         ),
                                       );
@@ -362,7 +360,10 @@ class _RatingPageState extends State<RatingPage> {
                                           ],
                                         ),
                                       ),
-                                      Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 10),
+                                        child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                      ),
                                     ],
                                   ),
                                 );

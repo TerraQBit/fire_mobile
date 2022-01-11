@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget> [
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.r, vertical: 20.r+MediaQuery.of(context).padding.top),
+                          padding: EdgeInsets.only(right: 15.r, left: 15.r, top: 15.r+MediaQuery.of(context).padding.top, bottom: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[

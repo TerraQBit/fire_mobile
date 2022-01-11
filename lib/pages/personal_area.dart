@@ -66,20 +66,20 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               onTap: () {
                                 context.navigateTo(const PersonalAreaEditingRouter());
                               },
                               child: SizedBox(
-                                height: 25.r,
-                                width: 25.r,
+                                height: 20.r,
+                                width: 20.r,
                                 child: Image.asset('assets/edit.png'),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.all(10.r),
+                            padding: EdgeInsets.all(20.r),
                             child: GestureDetector(
                               onTap: () {
                                 context.navigateTo(HomeRouter());
@@ -108,7 +108,7 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                       ),
                       const Spacer(),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10.r),
+                        padding: EdgeInsets.symmetric(horizontal: 20.r),
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text('Privacy', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big),),
@@ -116,7 +116,7 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -158,7 +158,7 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -206,7 +206,7 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
@@ -234,7 +234,7 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             mainAxisSize: MainAxisSize.max,
@@ -245,7 +245,7 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                       ),
                       const Spacer(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.symmetric(horizontal: 20.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             mainAxisSize: MainAxisSize.max,

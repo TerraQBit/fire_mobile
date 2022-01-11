@@ -1,7 +1,6 @@
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
-import 'package:fire_mobile/pages/buy_backs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -54,12 +53,7 @@ class MoneyElement extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BuyBacksPage(money: money,),
-                    ),
-                  );
+                  context.navigateTo(BuyBacksRouter(money: money));
                 },
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 15),
@@ -179,7 +173,7 @@ class _ShopPageState extends State<ShopPage> {
                               return Column(
                                 children: [
                                   Padding(
-                                    padding: pageIndex == index ? EdgeInsets.only(top: 0) : EdgeInsets.only(top: 70),
+                                    padding: pageIndex == index ? EdgeInsets.only(top: 50) : EdgeInsets.only(top: 70),
                                     child: SizedBox(
                                       height: pageIndex == index ? 350.r : 250.r,
                                       child: pictures[index],
