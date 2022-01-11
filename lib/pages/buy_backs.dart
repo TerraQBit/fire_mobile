@@ -94,7 +94,7 @@ class _BuyBacksPageState extends State<BuyBacksPage> {
 
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color(0xff566080),
+          top: false,
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(

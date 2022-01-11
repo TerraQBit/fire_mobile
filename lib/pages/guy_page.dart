@@ -84,7 +84,7 @@ class _GuyPageState extends State<GuyPage> {
 
     return onTaped == false ? Scaffold(
         body: ColorfulSafeArea(
-          color: const Color.fromRGBO(79, 66, 106, 1),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
@@ -348,7 +348,6 @@ class _GuyPageState extends State<GuyPage> {
                                 padding: EdgeInsets.only(right: 10.r, top: 10.r),
                                 child: GestureDetector(
                                   onTap: () {
-                                    context.navigateTo(const InfoRouter());
                                   },
                                   child: SizedBox(
                                       height: 140.r,

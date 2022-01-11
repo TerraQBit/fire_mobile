@@ -75,7 +75,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
-          color: const Color(0xff566080),
           child: Stack(
             children: [
               Container(

@@ -19,7 +19,7 @@ class _SecondOnboardingPageState extends State<SecondOnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ColorfulSafeArea(
-          color: Color(0xff566080),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(

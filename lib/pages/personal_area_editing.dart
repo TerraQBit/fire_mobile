@@ -44,55 +44,48 @@ class _PersonalAreaEditingPageState extends State<PersonalAreaEditingPage> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: ColorfulSafeArea(
-          color: const Color.fromRGBO(79, 66, 106, 1),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end:
-                    Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-                    colors: <Color>[
-                      Color.fromRGBO(86, 96, 128, 1),
-                      Color.fromRGBO(79, 66, 106, 1),
-                    ],
-                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
-                  ),
                   image: DecorationImage(
                       image: AssetImage("assets/background.png"),
-                      repeat: ImageRepeat.repeat
+                      fit: BoxFit.fill,
                   ),
                 ),
                 child: Center(
                   child: Column (
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget> [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(20.r),
-                            child: GestureDetector(
-                              child: SizedBox(
-                                height: 20.r,
-                                width: 20.r,
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
+                                child: SizedBox(
+                                  height: 20.r,
+                                  width: 20.r,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(20.r),
-                            child: GestureDetector(
-                              onTap: () {
-                                context.navigateTo(const PersonalAreaRouter());
-                              },
-                              child: SizedBox(
-                                height: 30.r,
-                                width: 30.r,
-                                child: Image.asset('assets/x.png'),
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.navigateTo(const PersonalAreaRouter());
+                                },
+                                child: SizedBox(
+                                  height: 30.r,
+                                  width: 30.r,
+                                  child: Image.asset('assets/x.png'),
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,

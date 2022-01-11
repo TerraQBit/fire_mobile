@@ -34,23 +34,13 @@ class _MenuPageState extends State<MenuPage> {
     }
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color.fromRGBO(79, 66, 106, 1),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end:
-                    Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-                    colors: <Color>[
-                      Color.fromRGBO(86, 96, 128, 1),
-                      Color.fromRGBO(79, 66, 106, 1),
-                    ],
-                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
-                  ),
                   image: DecorationImage(
                       image: AssetImage("assets/background.png"),
-                      repeat: ImageRepeat.repeat
+                      fit: BoxFit.fill
                   ),
                 ),
                 child: Center(
@@ -58,22 +48,25 @@ class _MenuPageState extends State<MenuPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget> [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.r),
-                            child: GestureDetector(
-                              onTap: () {
-                                context.navigateTo(HomeRouter());
-                              },
-                              child: SizedBox(
-                                height: 35.r,
-                                child: Image.asset('assets/x.png'),
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(10.r),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.navigateTo(HomeRouter());
+                                },
+                                child: SizedBox(
+                                  height: 35.r,
+                                  child: Image.asset('assets/x.png'),
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: 160.r,

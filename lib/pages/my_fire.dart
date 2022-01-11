@@ -36,12 +36,11 @@ class _MyFirePageState extends State<MyFirePage> {
     }
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color(0xff566080),
+          top: false,
           child: Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/second_background.png"),
-                  repeat: ImageRepeat.repeat,
                   fit: BoxFit.fill
               ),
             ),
@@ -49,22 +48,34 @@ class _MyFirePageState extends State<MyFirePage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.max,
               children: <Widget> [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(10.r),
-                      child: GestureDetector(
-                        onTap: () {
-                          context.navigateTo(const MenuRouter());
-                        },
-                        child: SizedBox(
-                          height: 30.r,
-                          child: Image.asset('assets/left.png'),
+                Padding(
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(20.r),
+                        child: GestureDetector(
+                          onTap: () {
+                            context.navigateTo(const MenuRouter());
+                          },
+                          child: SizedBox(
+                            height: 25.r,
+                            width: 25.r,
+                            child: Image.asset('assets/left.png'),
+                          ),
                         ),
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsets.all(20.r),
+                        child: GestureDetector(
+                          child: SizedBox(
+                            height: 30.r,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 GestureDetector(
                   child: Text('My Fire', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig),),

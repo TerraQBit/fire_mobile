@@ -45,53 +45,47 @@ class _TopCountriesPageState extends State<TopCountriesPage> {
     }
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color.fromRGBO(79, 66, 106, 1),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end:
-                    Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-                    colors: <Color>[
-                      Color.fromRGBO(86, 96, 128, 1),
-                      Color.fromRGBO(79, 66, 106, 1),
-                    ],
-                    tileMode: TileMode.repeated, // repeats the gradient over the canvas
-                  ),
                   image: DecorationImage(
                       image: AssetImage("assets/background.png"),
-                      repeat: ImageRepeat.repeat
+                      fit: BoxFit.fill
                   ),
                 ),
                 child: Center(
                   child: Column (
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget> [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10.r),
-                            child: GestureDetector(
-                              onTap: () {
-                                context.navigateTo(HomeRouter());
-                              },
-                              child: SizedBox(
-                                height: 30.r,
-                                child: Image.asset('assets/left.png'),
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
+                                onTap: () {
+                                  context.navigateTo(const MenuRouter());
+                                },
+                                child: SizedBox(
+                                  height: 25.r,
+                                  width: 25.r,
+                                  child: Image.asset('assets/left.png'),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10.r),
-                            child: GestureDetector(
-                              child: SizedBox(
-                                height: 30.r,
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
+                                child: SizedBox(
+                                  height: 30.r,
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20),

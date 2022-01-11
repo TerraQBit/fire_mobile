@@ -18,7 +18,7 @@ class _FirstOnboardingPageState extends State<FirstOnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color(0xff566080),
+          top: false,
           child: Center(
               child: GestureDetector(
                 onTap: () {

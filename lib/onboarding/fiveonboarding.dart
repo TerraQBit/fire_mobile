@@ -19,7 +19,7 @@ class _FiveOnboardingPageState extends State<FiveOnboardingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color(0xff566080),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(

@@ -37,7 +37,7 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
 
     return Scaffold(
         body: ColorfulSafeArea(
-          color: const Color.fromRGBO(79, 66, 106, 1),
+          top: false,
           child: Center(
             child: Container(
                 decoration: const BoxDecoration(
@@ -53,37 +53,40 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                   ),
                   image: DecorationImage(
                       image: AssetImage("assets/background.png"),
-                      repeat: ImageRepeat.repeat
+                      fit: BoxFit.fill,
                   ),
                 ),
                 child: Center(
                   child: Column (
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget> [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(20.r),
-                            child: GestureDetector(
-                              child: SizedBox(
-                                height: 20.r,
-                                width: 20.r,
-                                child: Image.asset('assets/edit.png'),
+                      Padding(
+                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
+                                child: SizedBox(
+                                  height: 20.r,
+                                  width: 20.r,
+                                  child: Image.asset('assets/edit.png'),
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(20.r),
-                            child: GestureDetector(
-                              child: SizedBox(
-                                height: 30.r,
-                                width: 30.r,
-                                child: Image.asset('assets/x.png'),
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
+                                child: SizedBox(
+                                  height: 30.r,
+                                  width: 30.r,
+                                  child: Image.asset('assets/x.png'),
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
