@@ -1,10 +1,17 @@
 import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:fire_mobile/controllers/fire_controller.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class FirePage extends StatefulWidget {
   const FirePage({Key? key}) : super(key: key);
@@ -19,7 +26,8 @@ class _FirePageState extends State<FirePage> {
   late double small;
   late double big;
   late double vbig;
-  List listStr = ['1-3 days', '3-7 days', '1-3 days'];
+  List listStr = ['Green', 'Orange', 'Blue'];
+  List colors = [Colors.green, Colors.orange, Colors.blue];
   List listImg = [Image.asset('assets/fire.png'), Image.asset('assets/red_fire.png'), Image.asset('assets/fire.png')];
   int selectedindex = 0;
 
@@ -49,6 +57,7 @@ class _FirePageState extends State<FirePage> {
     print(selectedindex);
     super.initState();
   }
+  final FireController fc = Get.put(FireController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,79 +73,116 @@ class _FirePageState extends State<FirePage> {
       big = 18.sp;
       vbig = 24.sp;
     }
-    final controller = PageController(
-      initialPage: 0
-    );
+    List colors = [Colors.red, Colors.blue, Colors.yellow];
+    List text = ['Red', 'Blue', 'Yellow'];
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
           child: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/second_background.png"),
+                  image: selectedindex == 1 ? const AssetImage("assets/red_fire_back.png") : const AssetImage("assets/second_background.png"),
                   fit: BoxFit.fill
               ),
             ),
             child: Column (
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: <Widget> [
                 Padding(
                   padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: EdgeInsets.all(10.r),
+                        padding: EdgeInsets.all(20.r),
                         child: GestureDetector(
                           onTap: () {
                             context.navigateTo(const MenuRouter());
                           },
                           child: SizedBox(
-                            height: 30.r,
+                            height: 25.r,
+                            width: 25.r,
                             child: Image.asset('assets/left.png'),
                           ),
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(20.r),
+                        child: GestureDetector(
+                          child: Text('Fire', style: GoogleFonts.overpassMono(fontSize: 32, color: Colors.white),)
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(20.r),
+                        child: GestureDetector(
+                          child: SizedBox(
+                            height: 25.r,
+                            width: 25.r,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                GestureDetector(
-                  child: Text('Fire', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig),),
+                const Spacer(),
+                Obx(() => Expanded(
+                    flex: 5,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        height: 350.0,
+                        enlargeCenterPage: true,
+                        enableInfiniteScroll: false,
+                        initialPage: 0,
+                        viewportFraction: 0.55,
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            selectedindex = index;
+                          });
+                        },
+                      ),
+                      items: [0,1,2].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                                child: Column(
+                                  children: [
+                                    SvgPicture.asset('assets/fire.svg', color: colors[i], height: 220,),
+                                    selectedindex == i ? GlowText(text[i], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 18)) : const SizedBox( height: 0, width: 0,),
+                                  ],
+                                )
+                            );
+                          },
+                        );
+                      }).toList(),
+                    )
+                )
                 ),
                 const Spacer(),
-                Expanded(
-                  flex: 5,
-                  child: PageView.builder(
-                    controller: controller,
-                    onPageChanged: (int page) {
-                      setState(() {
-                        selectedindex = page;
-                      });
-                      print(selectedindex);
-                    },
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: 150.r,
-                            child: listImg[index],
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 80.r),
-                            child: Text(listStr[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big)),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 60, vertical: 20.r),
-                            child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(fontSize: 12, color: Colors.white)),
-                          ),
-                        ],
-                      );
-                    }
+                GestureDetector(
+                  onTap: () {
+                    fc.changeBackGround(selectedindex);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            width: 1.5,
+                            color: Color(0xffffffff)
+                        )
+                    ),
+                    alignment: Alignment.center,
+                    height: 60,
+                    width: MediaQuery.of(context).size.width-150,
+                    child: Text('Selection this color', style: GoogleFonts.montserrat(fontSize: 18, color: Colors.white),),
                   ),
                 ),
-                const Spacer(),
+                SizedBox(
+                  height: 30,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -153,3 +199,11 @@ class _FirePageState extends State<FirePage> {
     );
   }
 }
+/*
+onPageChanged: (int page) {
+                      setState(() {
+                        selectedindex = page;
+                      });
+                      print(selectedindex);
+                    },
+ */

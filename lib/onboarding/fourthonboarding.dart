@@ -47,18 +47,25 @@ class _FourthOnboardingPageState extends State<FourthOnboardingPage> {
                                 padding: EdgeInsets.symmetric(horizontal: 35.r, vertical: 30),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: <Widget>[
                                     Expanded(
                                       flex: 1,
-                                      child: Image.asset('assets/Frame.png'),
-                                    ),
-                                    Expanded(
-                                      flex: 1,
-                                      child: Image.asset('assets/right.png'),
+                                      child: SizedBox(
+                                        height: 260,
+                                        child: Image.asset('assets/Frame.png'),
+                                      ),
                                     ),
                                     Expanded(
                                       flex: 1,
                                       child: SizedBox(
+                                        height: 300,
+                                        child: Image.asset('assets/right.png'),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Container(
                                         height: 300,
                                         child: Image.asset('assets/building2.png'),
                                       ),
@@ -77,27 +84,39 @@ class _FourthOnboardingPageState extends State<FourthOnboardingPage> {
                           ),
                           const Spacer(),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.r, vertical: 10.r),
+                            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                GestureDetector(
-                                    onTap: () {
-                                      context.navigateTo(HomeRouter());
-                                    },
-                                    child: Text('Skip', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400))
+                                Container(
+                                  height: 20,
+                                  width: 65,
+                                  child: GestureDetector(
+                                      onTap: () {
+                                        context.navigateTo(HomeRouter());
+                                      },
+                                      child: Text('Skip', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400))
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                  child: Text('3/3', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white)),
                                 ),
                                 GestureDetector(
                                     onTap: () {
                                       context.navigateTo(const FiveOnboardingRouter());
                                     },
                                     child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        Text('Next', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400)),
                                         SizedBox(
-                                          height: 30.r,
+                                          height: 20,
+                                          child: Text('Next', style: GoogleFonts.overpassMono(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400)),
+                                        ),
+                                        SizedBox(
+                                          height: 20,
                                           child: Image.asset('assets/right.png'),
-                                        )
+                                        ),
                                       ],
                                     )
                                 ),

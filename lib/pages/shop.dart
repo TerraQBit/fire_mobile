@@ -1,16 +1,42 @@
+import 'dart:async';
+
 import 'package:auto_route/src/router/auto_router_x.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({Key? key}) : super(key: key);
 
   @override
   _ShopPageState createState() => _ShopPageState();
+}
+
+class Number extends StatelessWidget {
+
+  final String number;
+  final double opacity;
+  final int r;
+  final int g;
+  final int b;
+
+  const Number({ required this.number, required this.opacity, required this.r, required this.g, required this.b });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 29,
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: Text(number, style: TextStyle(fontFamily: 'Digital7', fontSize: 61, color: Color.fromRGBO(r, g, b, opacity))),
+      ),
+    );
+  }
 }
 
 class MoneyElement extends StatelessWidget {
@@ -90,6 +116,41 @@ class _ShopPageState extends State<ShopPage> {
   int pageIndex = 0;
 
   List pictures = [Image.asset('assets/Frame.png'), Image.asset('assets/building2.png'), Image.asset('assets/Frame.png')];
+  List names = ["Empire State Building", "Empire State Building2", "Empire State Building3"];
+  List cost = ['69', '98', '122'];
+  List metres = ['123', '88', '182'];
+
+  late DateTime now;
+  late String HoursString;
+  var HoursInt;
+  late String MinutesString;
+  var MinutesInt;
+  bool isOpened = false;
+  int selectedIndex = 0;
+
+  void _getTime() {
+    final DateTime now = DateTime.now();
+    HoursString = DateFormat('H').format(now);
+    MinutesString = DateFormat('m').format(now);
+    setState(() {
+      MinutesInt = int.parse(MinutesString);
+      HoursInt = int.parse(HoursString);
+    });
+  }
+
+  @override
+  void initState() {
+    setState(() {
+      selectedIndex = 0;
+    });
+    now = DateTime.now();
+    HoursString = DateFormat('H').format(now);
+    HoursInt = int.parse(HoursString);
+    MinutesString = DateFormat('m').format(now);
+    MinutesInt = int.parse(MinutesString);
+    Timer.periodic(const Duration(seconds: 1), (Timer t) => _getTime());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,19 +167,20 @@ class _ShopPageState extends State<ShopPage> {
       vbig = 24.sp;
     }
 
-    final controller = PageController(
-        initialPage: 0,
-        viewportFraction: 0.5,
-    );
-
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
           child: Container(
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage("assets/background.png"),
-                  fit: BoxFit.fill
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end:
+                Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
+                colors: <Color>[
+                  Color.fromRGBO(86, 96, 128, 1),
+                  Color.fromRGBO(79, 66, 106, 1),
+                ], // red to yellow
+                tileMode: TileMode.repeated, // repeats the gradient over the canvas
               ),
             ),
             child: Column (
@@ -134,7 +196,7 @@ class _ShopPageState extends State<ShopPage> {
                         padding: EdgeInsets.all(20.r),
                         child: GestureDetector(
                           onTap: () {
-                            context.navigateTo(const MenuRouter());
+                            context.navigateTo(const HomeRouter());
                           },
                           child: SizedBox(
                             height: 25.r,
@@ -155,129 +217,171 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 10),
-                  child: GestureDetector(
-                    child: Text('Shop', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig),),
+                  padding: EdgeInsets.only(bottom: 15),
+                  child: SizedBox(
+                    width: 130,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              Row(
+                                children: const [
+                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
+                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
+                                  Text(':', style: TextStyle(fontFamily: 'Digital7', fontSize: 61, color: Colors.white)),
+                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
+                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Number(number: (HoursInt~/10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
+                                  Number(number: (HoursInt%10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
+                                  const Text(':', style: TextStyle(fontFamily: 'Digital7', fontSize: 61, color: Colors.white)),
+                                  Number(number: (MinutesInt~/10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
+                                  Number(number: (MinutesInt%10).toString(), opacity: 1, r: 255, g: 255, b: 255,),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 25),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                isOpened = true;
+                              });
+                            },
+                            child: Stack(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 21, left: 8),
+                                  child: SizedBox(
+                                    width: 40,
+                                    child: Text('4000', textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 12, color: Colors.white)),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 21, left: 95),
+                                  child: GestureDetector(
+                                    child: SizedBox(
+                                      width: 15,
+                                      child: Image.asset('assets/+.png'),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: SizedBox(
+                                    width: 130,
+                                    child: Image.asset('assets/shutUpAndTakeMyMoney.png'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text('light your fire', style: GoogleFonts.overpassMono(fontSize: 11, color: Colors.white))
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ListView(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          MoneyElement(money: '100', big: big, little: little),
-                          MoneyElement(money: '200', big: big, little: little)
-                        ],
-                      ),
-                      SizedBox(
-                        height: 700,
-                        child: PageView.builder(
-                            controller: controller,
-                            itemCount: 3,
-                            onPageChanged: (int page) {
-                              setState(() {
-                                pageIndex = page;
-                              });
-                            },
-                            itemBuilder: (BuildContext context, int index) {
+                      CarouselSlider(
+                        options: CarouselOptions(
+                          height: 350.0,
+                          enlargeCenterPage: true,
+                          enableInfiniteScroll: false,
+                          initialPage: 0,
+                          viewportFraction: 0.5,
+                          onPageChanged: (index, reason) {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                        ),
+                        items: [0,1,2].map((i) {
+                          return Builder(
+                            builder: (BuildContext context) {
                               return Column(
+                                mainAxisSize: MainAxisSize.max,
                                 children: [
-                                  Padding(
-                                    padding: pageIndex == index ? EdgeInsets.only(top: 50) : EdgeInsets.only(top: 70),
-                                    child: SizedBox(
-                                      height: pageIndex == index ? 350.r : 250.r,
-                                      child: pictures[index],
-                                    ),
+                                  SizedBox(
+                                    height: 300,
+                                    child: pictures[i],
                                   ),
-                                  pageIndex == index ? Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 25),
-                                        child: SizedBox(
-                                          width: 200,
-                                          child: Text(
-                                            'Empire State Building',
-                                            style: GoogleFonts.overpassMono(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: small
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 15),
-                                        child: SizedBox(
-                                          width: 120,
-                                          child: Text(
-                                            '381 meters',
-                                            style: GoogleFonts.overpassMono(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: little
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 15),
-                                        child: SizedBox(
-                                          width: 30,
-                                          child: Image.asset('assets/!.png'),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 15),
-                                        child: SizedBox(
-                                          width: 250,
-                                          child: GestureDetector(
-                                            child: Padding(
-                                              padding: EdgeInsets.only(bottom: 15),
-                                              child: Container(
-                                                alignment: Alignment.center,
-                                                height: 60,
-                                                width: 200,
-                                                decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.circular(10),
-                                                    border: Border.all(
-                                                        width: 1.5,
-                                                        color: Color(0xffffffff)
-                                                    )
-                                                ),
-                                                child: Text('Unlock for 1500\$', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.bold, fontSize: little)),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ) :
-                                      const SizedBox()
                                 ],
                               );
-                            }
-                        ),
+                            },
+                          );
+                        }).toList(),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Column(
                         children: [
-                          MoneyElement(money: '500', big: big, little: little),
-                          MoneyElement(money: '1000', big: big, little: little)
+                          Padding(
+                            padding: EdgeInsets.only(top: 25),
+                            child: SizedBox(
+                              width: 200,
+                              child: Text(
+                                '${names[selectedIndex]}',
+                                style: GoogleFonts.overpassMono(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: small
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 15),
+                            child: SizedBox(
+                              width: 120,
+                              child: Text(
+                                '${metres[selectedIndex]} meters',
+                                style: GoogleFonts.overpassMono(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: little
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(top: 15),
+                            child: SizedBox(
+                              width: 30,
+                              child: Image.asset('assets/!.png'),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(vertical: 25),
+                            child: GestureDetector(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        width: 1.5,
+                                        color: Color(0xffffffff)
+                                    )
+                                ),
+                                alignment: Alignment.center,
+                                height: 60,
+                                width: MediaQuery.of(context).size.width-130,
+                                child: Text('Unlock for ${cost[selectedIndex]} firebacks', style: GoogleFonts.montserrat(fontSize: 18, color: Colors.white),),
+                              ),
+                            ),
+                          )
                         ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          MoneyElement(money: '1500', big: big, little: little),
-                          MoneyElement(money: '2000', big: big, little: little),
-                        ],
-                      ),
+                      )
                     ],
                   ),
-                ),
+                )
               ],
             ),
           ),

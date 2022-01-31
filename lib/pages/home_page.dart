@@ -3,10 +3,11 @@ import 'dart:ui';
 
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
+import 'package:fire_mobile/controllers/fire_controller.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -39,6 +40,57 @@ class Number extends StatelessWidget {
   }
 }
 
+class SendMoneyElement extends StatefulWidget {
+
+  final String number;
+  final VoidCallback onPressed;
+
+  const SendMoneyElement({ required this.number, required this.onPressed});
+
+  @override
+  SendMoneyElementState createState() => SendMoneyElementState();
+}
+
+class SendMoneyElementState extends State<SendMoneyElement> {
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 130,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              child: Image.asset('assets/burnMoney.png'),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, left: 8),
+            child: SizedBox(
+              width: 38,
+              child: Text(widget.number, textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, left: 95),
+            child: GestureDetector(
+              onTap: () {
+                widget.onPressed();
+                print('123');
+              },
+              child: SizedBox(
+                width: 20,
+                child: Image.asset('assets/+.png'),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _HomePageState extends State<HomePage> {
 
   late DateTime now;
@@ -48,6 +100,8 @@ class _HomePageState extends State<HomePage> {
   var MinutesInt;
   bool isOpened = false;
   int fireCount = 0;
+
+  final FireController fc = Get.put(FireController());
 
   void _getTime() {
     final DateTime now = DateTime.now();
@@ -75,28 +129,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
-          child: Stack(
+          child: Obx(() => Stack(
             children: [
               Container(
                   decoration: const BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end:
-                      Alignment.bottomCenter, // 10% of the width, so there are ten blinds.
-                      colors: <Color>[
-                        Color.fromRGBO(86, 96, 128, 1),
-                        Color.fromRGBO(79, 66, 106, 1),
-                      ], // red to yellow
-                      tileMode: TileMode.repeated, // repeats the gradient over the canvas
-                    ),
                     image: DecorationImage(
-                        image: AssetImage("assets/little_fire.png"),
+                        image: AssetImage("assets/blue_back.png"),
                         fit: BoxFit.fill
                     ),
                   ),
                   child: Center(
                     child: Column (
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: <Widget> [
                         Padding(
@@ -105,28 +149,23 @@ class _HomePageState extends State<HomePage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               GestureDetector(
-                                onTap: () {
-                                  context.navigateTo(const MenuRouter());
-                                },
-                                child: SizedBox(
-                                  height: 25.r,
-                                  width: 25.r,
-                                  child: Center(
-                                    child: SizedBox(
-                                        height: 25.r,
-                                        width: 25.r,
-                                        child: Image.asset('assets/menu.png')),
-                                  ),
-                                ),
+                                  onTap: () {
+                                    context.navigateTo(const MenuRouter());
+                                  },
+                                  child: SizedBox(
+                                      height: 30,
+                                      width: 30,
+                                      child: Image.asset('assets/menu.png')
+                                  )
                               ),
                               const Spacer(),
                               GestureDetector(
                                   onTap: () {
+                                    context.navigateTo(const PersonalAreaRouter());
                                   },
                                   child: SizedBox(
-                                    height: 25.r,
-                                    width: 25.r,
-                                    child: Image.asset('assets/maximize_2.png'),
+                                    width: 35,
+                                    child: Image.asset('assets/home_avatar.png'),
                                   )
                               )
                             ],
@@ -134,19 +173,24 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Stack(
                           children: <Widget>[
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 20.r, top: 12.r),
-                                child: GestureDetector(
-                                  onTap: () {
-
-                                  },
-                                  child: SizedBox(
-                                      height: 20.r,
-                                      child: Image.asset('assets/share.png')),
+                            Obx(() {
+                              final color = fc.color;
+                              return Align(
+                                alignment: Alignment.topLeft,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 20.r, top: 12.r),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print(color);
+                                    },
+                                    child: SizedBox(
+                                        width: 25,
+                                        child: Image.asset('assets/share.png')),
+                                  ),
                                 ),
-                              ),
+                              );
+                            }
                             ),
                             GestureDetector(
                               child: SizedBox(
@@ -161,11 +205,11 @@ class _HomePageState extends State<HomePage> {
                                             children: [
                                               Row(
                                                 children: const [
-                                                  Number(number: '0', opacity: 0.2, r: 0, g: 0, b: 0,),
-                                                  Number(number: '0', opacity: 0.2, r: 0, g: 0, b: 0,),
+                                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
+                                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
                                                   Text(':', style: TextStyle(fontFamily: 'Digital7', fontSize: 61, color: Colors.white)),
-                                                  Number(number: '0', opacity: 0.2, r: 0, g: 0, b: 0,),
-                                                  Number(number: '0', opacity: 0.2, r: 0, g: 0, b: 0,),
+                                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
+                                                  Number(number: '0', opacity: 0.1, r: 220, g: 255, b: 255,),
                                                 ],
                                               ),
                                               Row(
@@ -189,11 +233,14 @@ class _HomePageState extends State<HomePage> {
                                             child: Stack(
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.only(top: 22, left: 10),
-                                                  child: Text('100', textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 15, color: Colors.white)),
+                                                  padding: const EdgeInsets.only(top: 21, left: 8),
+                                                  child: SizedBox(
+                                                    width: 40,
+                                                    child: Text('4000', textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 12, color: Colors.white)),
+                                                  ),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(top: 25, left: 95),
+                                                  padding: const EdgeInsets.only(top: 21, left: 95),
                                                   child: GestureDetector(
                                                     child: SizedBox(
                                                       width: 15,
@@ -205,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                                                   alignment: Alignment.center,
                                                   child: SizedBox(
                                                     width: 130,
-                                                    child: Image.asset('assets/shutUPandtakeMyMoney.png'),
+                                                    child: Image.asset('assets/shutUpAndTakeMyMoney.png'),
                                                   ),
                                                 ),
                                               ],
@@ -220,54 +267,74 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ),
                             ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Padding(
-                                padding: EdgeInsets.only(right: 10.r, top: 10.r),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    context.navigateTo(const InfoRouter());
-                                  },
-                                  child: SizedBox(
-                                      height: 140.r,
-                                      child: Image.asset('assets/building_right.png')),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
+                        Expanded(
+                          child: Container(
+                              padding: EdgeInsets.only(top: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                  const SizedBox(
+                                    width: 82,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      context.navigateTo(const ShopRouter());
+                                    },
+                                    child: Image.asset('assets/Frame.png'),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 70),
+                                    child: SizedBox(
+                                      height: 20,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('69 metres', style: GoogleFonts.overpassMono(fontSize: 12, color: Colors.white)),
+                                          Image.asset('assets/line.png')
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                          ),
+                        ),
+                        isOpened == false ?
+                        SizedBox(
+                          width: 130,
+                          child: Image.asset('assets/fire_button_true.png'),
+                        ) :
+                        const SizedBox()
                       ],
                     ),
                   )
               ),
               isOpened == true ?
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
+              SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
                   child: BackdropFilter(
                     filter: ImageFilter.blur(
                         sigmaX: 9,
                         sigmaY: 9
                     ),
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20.r+MediaQuery.of(context).padding.top, horizontal: 15.r),
+                      padding: EdgeInsets.only(right: 15.r, left: 15.r, top: 15.r+MediaQuery.of(context).padding.top),
                       child: Column(
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              GestureDetector(
-                                onTap: () {
-                                  context.navigateTo(const MenuRouter());
-                                },
-                                child: SizedBox(
-                                  height: 30.r,
-                                  width: 30.r,
-                                  child: Center(
-                                    child: SizedBox(
-                                      height: 25.r,
-                                      width: 25.r,
-                                    ),
+                              const SizedBox(
+                                height: 30,
+                                width: 30,
+                                child: Center(
+                                  child: SizedBox(
+                                    height: 25,
+                                    width: 25,
                                   ),
                                 ),
                               ),
@@ -280,95 +347,79 @@ class _HomePageState extends State<HomePage> {
                                     });
                                   },
                                   child: SizedBox(
-                                    height: 30.r,
-                                    width: 30.r,
+                                    height: 30,
+                                    width: 30,
                                     child: Image.asset('assets/x.png'),
                                   )
                               )
                             ],
                           ),
                           const Spacer(),
-                          Stack(
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.only(right: 85, top: 17),
-                                  child: GestureDetector(
-                                    child: SizedBox(
-                                      width: 30,
-                                      child: Text(fireCount == 0 ? '_' : fireCount.toString(), textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 15, color: Colors.white)),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: SizedBox(
-                                  width: 130,
-                                  child: Image.asset('assets/add_fire.png'),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 85, top: 17),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        fireCount+=1;
-                                        print(fireCount);
-                                      });
-                                    },
-                                    child: Container(
-                                      width: 20,
-                                      height: 20,
-                                      child: Image.asset('assets/+.png'),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 20,),
-                          SizedBox(
-                            width: 165,
-                            child: Text('To light a fire drop the minimum', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(fontSize: 15, color: Colors.white)),
-                          ),
-                          SizedBox(height: 20,),
+                          Text('Burn Money', style: GoogleFonts.overpassMono(fontSize: 24, color: Colors.white)),
+                          const Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text('1', textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+                              SendMoneyElement(number: '5', onPressed: () { setState(() {
+                                fireCount += 5;
+                              });},),
+                              SizedBox(
+                                width: 40,
+                              ),
+                              SendMoneyElement(number: '10', onPressed: () { setState(() {
+                                fireCount += 10;
+                              }); },),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SendMoneyElement(number: '50', onPressed: () { setState(() {
+                                fireCount += 50;
+                              }); },),
+                              SizedBox(
+                                width: 40,
+                              ),
+                              SendMoneyElement(number: '100', onPressed: () { setState(() {
+                                fireCount += 100;
+                              }); },),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          SendMoneyElement(number: fireCount == 0 ? '_' : fireCount.toString(), onPressed: () {
+                            context.navigateTo(BuyBacksRouter(money: '10'));
+                          },),
+                          const SizedBox(
+                            height: 40,
+                          ),
+                          SizedBox(
+                              width: 180,
+                              child: Text('To light a fire drop the minimum', textAlign: TextAlign.center, style: GoogleFonts.montserrat(fontSize: 15, color: Colors.white))
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Container(
+                                padding: const EdgeInsets.only(bottom: 15),
+                                child: Text(fireCount.toString(), style: GoogleFonts.montserrat(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold)),
+                              ),
                               const SizedBox(
                                 width: 10,
                               ),
                               SizedBox(
-                                width: 45,
-                                child: Image.asset('assets/fire_baks.png'),
-                              ),
+                                height: 60,
+                                child: Image.asset('assets/logo.png'),
+                              )
                             ],
                           ),
-                          SizedBox(height: 20,),
-                          GestureDetector(
-                            onTap: () {
-                              context.navigateTo(const ShopRouter());
-                              setState(() {
-                                isOpened = false;
-                              });
-                            },
-                            child: GlowText(
-                              'Shop',
-                              style: GoogleFonts.overpassMono(fontSize: 24, color: Colors.white),
-                            ),
-                          ),
-                          const Spacer(),
-                          GestureDetector(
-                            child: SizedBox(
-                              height: 150,
-                              child: fireCount == 0 ? Image.asset('assets/fire_button_false.png') : Image.asset('assets/fire_button_true.png'),
-                            ),
+                          SizedBox(
+                            height: 130,
+                            child: Image.asset('assets/fire_button_true.png'),
                           )
                         ],
                       ),
@@ -376,8 +427,9 @@ class _HomePageState extends State<HomePage> {
                   )
               )
                   :
-                  SizedBox()
+              SizedBox()
             ],
+          )
           ),
         )
     );

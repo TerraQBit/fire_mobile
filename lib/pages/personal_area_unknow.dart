@@ -89,17 +89,17 @@ class _PersonalAreaUnknowPageState extends State<PersonalAreaUnknowPage> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
-                        width: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
+                        height: MediaQuery.of(context).size.height > 600 ? 120.r : 100.r,
+                        width: MediaQuery.of(context).size.height > 600 ? 120.r : 100.r,
                         child: Image.asset('assets/default_avatar.png'),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20.r),
-                        child: Text('User123', style: GoogleFonts.montserrat(color: Colors.white, fontSize: big),),
+                        child: Text('User123', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.w500, fontSize: big),),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.r),
-                        child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontSize: little),),
+                        child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.w500, fontSize: little),),
                       ),
                       const Spacer(),
                       Padding(

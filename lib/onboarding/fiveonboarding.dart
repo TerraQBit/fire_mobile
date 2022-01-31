@@ -41,10 +41,10 @@ class _FiveOnboardingPageState extends State<FiveOnboardingPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget> [
                           const Spacer(),
+                          const Spacer(),
                           SizedBox(
-                            height: 160.r,
-                            width: 160.r,
-                            child: Image.asset('assets/fire_of_fame.png'),
+                            width: 160,
+                            child: Image.asset('assets/fireOfFrame.png'),
                           ),
                           const Spacer(),
                           GestureDetector(
@@ -72,7 +72,7 @@ class _FiveOnboardingPageState extends State<FiveOnboardingPage> {
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 30,
                           ),
                           GestureDetector(
                             onTap: () {

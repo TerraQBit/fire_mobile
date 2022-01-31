@@ -1,7 +1,6 @@
 import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
-import 'package:fire_mobile/pages/guy_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_glow/flutter_glow.dart';
@@ -90,11 +89,11 @@ class _RatingPageState extends State<RatingPage> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 20),
+                        padding: EdgeInsets.only(top: 10),
                         child: Text('Rate', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig),),
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
                         child: Container(
                             height: 60,
                             decoration: BoxDecoration(
@@ -140,66 +139,58 @@ class _RatingPageState extends State<RatingPage> {
                       ),
                       isChoosen == 0 ?
                       Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: ListView.builder(
-                              itemCount: listNumber.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => const GuyPage(isFollow: true, name: 'Alex Jhonson'),
+                        child: ListView.builder(
+                            itemCount: listNumber.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Padding(
+                                padding: EdgeInsets.only(top: 0, bottom: 20, left: 10, right: 10),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
+                                      },
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(right: 5),
+                                            child: Container(
+                                              width: 80,
+                                              child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
                                             ),
-                                          );
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(right: 5),
-                                              child: Container(
-                                                width: 80,
-                                                child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
-                                              ),
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              print(index);
+                                            },
+                                            child: SizedBox(
+                                              height: 40,
+                                              child: Image.asset('assets/avatar.png'),
                                             ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                print(index);
-                                              },
-                                              child: SizedBox(
-                                                height: 40,
-                                                child: Image.asset('assets/avatar.png'),
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: 5),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                                Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
+                                              ],
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                                  Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 10),
-                                        child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }
-                          ),
-                        ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 10),
+                                      child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
+                        )
                       ) : SizedBox(),
                       isChoosen == 1 ?
                       Expanded(
@@ -261,12 +252,7 @@ class _RatingPageState extends State<RatingPage> {
                                           children: [
                                             GestureDetector(
                                               onTap: () {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                    builder: (context) => const GuyPage(isFollow: true, name: 'Alex Jhonson'),
-                                                  ),
-                                                );
+                                                context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
                                               },
                                               child: Row(
                                                 children: [
@@ -313,23 +299,18 @@ class _RatingPageState extends State<RatingPage> {
                       isChoosen == 2 ?
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: EdgeInsets.only(top: 0),
                           child: ListView.builder(
                               itemCount: listNumber.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Padding(
-                                  padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+                                  padding: EdgeInsets.only(top: 0, bottom: 20, left: 10, right: 10),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       GestureDetector(
                                         onTap: (){
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => const GuyPage(isFollow: true, name: 'Alex Jhonson'),
-                                            ),
-                                          );
+                                          context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
                                         },
                                         child: Row(
                                           children: [
@@ -374,7 +355,7 @@ class _RatingPageState extends State<RatingPage> {
                         ),
                       ) : SizedBox(),
                       Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.r),
+                          padding: EdgeInsets.only(left: 10.r, right: 10.r, top: 12.r),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,

@@ -3,6 +3,7 @@ import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_glow/flutter_glow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -75,6 +76,7 @@ class _BuyBacksPageState extends State<BuyBacksPage> {
   late double small;
   late double big;
   late double vbig;
+  late String money = '0';
 
   @override
   Widget build(BuildContext context) {
@@ -106,10 +108,10 @@ class _BuyBacksPageState extends State<BuyBacksPage> {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(10.r),
+                      padding: EdgeInsets.only(left: 15.r, top: 15.r+MediaQuery.of(context).padding.top),
                       child: GestureDetector(
                         onTap: () {
                           context.navigateTo(const ShopRouter());
@@ -118,55 +120,72 @@ class _BuyBacksPageState extends State<BuyBacksPage> {
                           height: 30.r,
                           child: Image.asset('assets/left.png'),
                         ),
+
                       ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 15.r+MediaQuery.of(context).padding.top),
+                      child: Text('Buy firebaks', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig)),
+                    ),
+                    const SizedBox(
+                      width: 30,
                     )
                   ],
                 ),
-                Expanded(
-                  child: ListView (
-                    children:[
-                      Text('Buy firebaks', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig)),
-                      const SizedBox(height: 40),
-                      Element(name: 'Firebaks', hint: widget.money, big: big, small: small),
-                      const SizedBox(height: 20),
-                      Element(name: 'Card number', big: big, small: small),
-                      const SizedBox(height: 20),
-                      Element(name: 'Card holder', big: big, small: small),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Element(big: big, small: small, name: 'Expires'),
-                          ),
-                          Expanded(
-                            child: Element(big: big, small: small, name: 'CVC'),
-                          ),
-                        ],
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width-80,
+                  child: Text('Enter the exact amount of firebucks you want to purchase.', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w500)),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 70, vertical: 30),
+                  child: TextField(
+                    keyboardType: TextInputType.number,
+                    onChanged: (text) {
+                      setState(() {
+                        money = text;
+                      });
+                    },
+                    style: GoogleFonts.montserrat(color: Colors.white, fontSize: small),
+                    decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide: BorderSide(width: 1,color: Colors.white70),
                       ),
-                      const SizedBox(height: 20),
-                      GlowText(
-                        'Amount: ' + widget.money + '\$',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
+                      disabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide: BorderSide(width: 1,color: Colors.white70),
                       ),
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        child: SizedBox(
-                          height: 55,
-                          child: Image.asset('assets/pay.png'),
-                        ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                        borderSide: BorderSide(width: 1,color: Colors.white70),
                       ),
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        child: SizedBox(
-                          height: 55,
-                          child: Image.asset('assets/unlock.png'),
-                        ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                  child: GlowText('Amount: ' + money + '\$', textAlign: TextAlign.center, style: GoogleFonts.overpassMono(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500)),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: GestureDetector(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              width: 1.5,
+                              color: Color(0xffffffff)
+                          )
                       ),
-                      const SizedBox(height: 20),
-                    ],
+                      alignment: Alignment.center,
+                      height: 60,
+                      width: MediaQuery.of(context).size.width-130,
+                      child: Text('Go to checkout', style: GoogleFonts.montserrat(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),),
+                    ),
                   ),
                 )
               ],

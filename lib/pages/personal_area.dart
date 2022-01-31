@@ -25,6 +25,8 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
   late double small;
   late double big;
 
+  String text1 = 'Aenean vel nunc sit amet ex tristique aliquam nec ac lorem. Vivamus commodo magna a odio pellentesque lacinia. Aliquam rutrum vehicula ante, sit amet tristique nunc laoreet id. Ut vel lobortis quam. Suspendisse potenti. Nulla ex lectus, posuere non tortor sit amet, rutrum luctus enim.';
+  String text2 = 'Nullam vel lorem at elit ultrices porta. Nulla luctus sem et pulvinar mollis.';
   @override
   Widget build(BuildContext context) {
     if (MediaQuery.of(context).size.height > 600) {
@@ -87,17 +89,17 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
-                        width: MediaQuery.of(context).size.height > 600 ? 100.r : 80.r,
+                        height: MediaQuery.of(context).size.height > 600 ? 120.r : 100.r,
+                        width: MediaQuery.of(context).size.height > 600 ? 120.r : 100.r,
                         child: Image.asset('assets/avatar.png'),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20.r),
-                        child: Text('Alex Cooper', style: GoogleFonts.montserrat(color: Colors.white, fontSize: big),),
+                        child: Text('Alex Cooper', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.w500, fontSize: big),),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 10.r),
-                        child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontSize: little),),
+                        child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.w500, fontSize: little),),
                       ),
                       const Spacer(),
                       Padding(
@@ -119,6 +121,49 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                                   Padding(
                                     padding: EdgeInsets.symmetric(horizontal: 10.r),
                                     child: GestureDetector(
+                                      onTap: () {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(20.0),
+                                            ),
+                                            builder: (context) {
+                                              return Container(
+                                                height: 350,
+                                                decoration: const BoxDecoration(
+                                                    color: Color.fromRGBO(78, 85, 115, 1),
+                                                    borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(20),
+                                                      topRight: Radius.circular(20),
+                                                    )
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                                  child: Column(
+                                                    children: [
+                                                      SizedBox(height: 10,),
+                                                      Image.asset('assets/bottomSheetLine.png'),
+                                                      SizedBox(height: 20,),
+                                                      Expanded(
+                                                        child: ListView(
+                                                          children: [
+                                                            Container(
+                                                              child: Text('Opened fire', textAlign: TextAlign.start, style: GoogleFonts.overpassMono(fontSize: 24, color: Colors.white)),
+                                                              alignment: Alignment.centerLeft,
+                                                            ),
+                                                            SizedBox(height: 20,),
+                                                            Text(text1, style: GoogleFonts.overpassMono(fontSize: 15, color: Colors.white),),
+                                                            SizedBox(height: 20,),
+                                                            Text(text2, style: GoogleFonts.overpassMono(fontSize: 15, color: Colors.white),),
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                      },
                                       child: SizedBox(
                                         height: 24.r,
                                         width: 24.r,
@@ -168,7 +213,52 @@ class _PersonalAreaPageState extends State<PersonalAreaPage> {
                                           child: SizedBox(
                                             height: 24.r,
                                             width: 24.r,
-                                            child: Image.asset('assets/what.png'),
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                showModalBottomSheet(
+                                                    context: context,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(20.0),
+                                                    ),
+                                                    builder: (context) {
+                                                  return Container(
+                                                    height: 350,
+                                                    decoration: const BoxDecoration(
+                                                      color: Color.fromRGBO(78, 85, 115, 1),
+                                                      borderRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(20),
+                                                        topRight: Radius.circular(20),
+                                                      )
+                                                    ),
+                                                    child: Padding(
+                                                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                                      child: Column(
+                                                        children: [
+                                                          SizedBox(height: 10,),
+                                                          Image.asset('assets/bottomSheetLine.png'),
+                                                          SizedBox(height: 20,),
+                                                          Expanded(
+                                                            child: ListView(
+                                                              children: [
+                                                                Container(
+                                                                  child: Text('Opened fire', textAlign: TextAlign.start, style: GoogleFonts.overpassMono(fontSize: 24, color: Colors.white)),
+                                                                  alignment: Alignment.centerLeft,
+                                                                ),
+                                                                SizedBox(height: 20,),
+                                                                Text(text1, style: GoogleFonts.overpassMono(fontSize: 15, color: Colors.white),),
+                                                                SizedBox(height: 20,),
+                                                                Text(text2, style: GoogleFonts.overpassMono(fontSize: 15, color: Colors.white),),
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  );
+                                                });
+                                              },
+                                              child: Image.asset('assets/what.png'),
+                                            ),
                                           ),
                                         ),
                                       ),

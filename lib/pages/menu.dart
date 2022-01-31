@@ -68,25 +68,16 @@ class _MenuPageState extends State<MenuPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 160.r,
-                        width: 160.r,
-                        child: Image.asset('assets/fire_of_fame.png'),
+                      const SizedBox(
+                        height: 50,
                       ),
-                      const Spacer(),
-                      Padding(
-                          padding: EdgeInsets.symmetric(vertical: 13.r),
-                          child: GestureDetector(
-                            onTap: () {
-                              context.navigateTo(const PersonalAreaRouter());
-                            },
-                            child: SizedBox(
-                              child: GlowText(
-                                'Settings',
-                                style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
-                              ),
-                            ),
-                          )
+                      SizedBox(
+                        height: 190,
+                        width: 160,
+                        child: Image.asset('assets/fireOfFrame.png'),
+                      ),
+                      const SizedBox(
+                        height: 50,
                       ),
                       Padding(
                           padding: EdgeInsets.symmetric(vertical: 10.r),
@@ -139,20 +130,6 @@ class _MenuPageState extends State<MenuPage> {
                             child: SizedBox(
                               child: GlowText(
                                 'The color of my fire',
-                                style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
-                              ),
-                            ),
-                          )
-                      ),
-                      Padding(
-                          padding: EdgeInsets.symmetric(vertical: 13.r),
-                          child: GestureDetector(
-                            onTap: () {
-                              context.navigateTo(const ShopRouter());
-                            },
-                            child: SizedBox(
-                              child: GlowText(
-                                'Shop',
                                 style: GoogleFonts.overpassMono(fontSize: big, color: Colors.white),
                               ),
                             ),

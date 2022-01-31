@@ -9,7 +9,6 @@
 // **************************************************************************
 
 import 'package:auto_route/auto_route.dart' as _i19;
-import 'package:flutter/cupertino.dart' as _i21;
 import 'package:flutter/material.dart' as _i20;
 
 import '../onboarding/firstonboarding.dart' as _i1;
@@ -119,7 +118,7 @@ class AppRouter extends _i19.RootStackRouter {
   @override
   List<_i19.RouteConfig> get routes => [
         _i19.RouteConfig('/#redirect',
-            path: '/', redirectTo: 'first', fullMatch: true),
+            path: '/', redirectTo: 'second', fullMatch: true),
         _i19.RouteConfig(FirstOnboardingRouter.name, path: 'first'),
         _i19.RouteConfig(TopCountriesRouter.name, path: 'top_countries'),
         _i19.RouteConfig(SecondOnboardingRouter.name, path: 'second'),
@@ -207,7 +206,7 @@ class FourthOnboardingRouter extends _i19.PageRouteInfo<void> {
 /// generated route for
 /// [_i8.BuyBacksPage]
 class BuyBacksRouter extends _i19.PageRouteInfo<BuyBacksRouterArgs> {
-  BuyBacksRouter({_i21.Key? key, required String money})
+  BuyBacksRouter({_i20.Key? key, required String money})
       : super(BuyBacksRouter.name,
             path: 'buy_backs',
             args: BuyBacksRouterArgs(key: key, money: money));
@@ -218,7 +217,7 @@ class BuyBacksRouter extends _i19.PageRouteInfo<BuyBacksRouterArgs> {
 class BuyBacksRouterArgs {
   const BuyBacksRouterArgs({this.key, required this.money});
 
-  final _i21.Key? key;
+  final _i20.Key? key;
 
   final String money;
 
@@ -231,7 +230,7 @@ class BuyBacksRouterArgs {
 /// generated route for
 /// [_i9.GuyPage]
 class GuyRouter extends _i19.PageRouteInfo<GuyRouterArgs> {
-  GuyRouter({_i21.Key? key, required String name, required bool isFollow})
+  GuyRouter({_i20.Key? key, required String name, required bool isFollow})
       : super(GuyRouter.name,
             path: 'guy',
             args: GuyRouterArgs(key: key, name: name, isFollow: isFollow));
@@ -242,7 +241,7 @@ class GuyRouter extends _i19.PageRouteInfo<GuyRouterArgs> {
 class GuyRouterArgs {
   const GuyRouterArgs({this.key, required this.name, required this.isFollow});
 
-  final _i21.Key? key;
+  final _i20.Key? key;
 
   final String name;
 

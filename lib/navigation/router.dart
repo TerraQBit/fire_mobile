@@ -25,7 +25,6 @@ import 'package:fire_mobile/pages/top_countries.dart';
         path: 'first',
         name: 'FirstOnboardingRouter',
         page: FirstOnboardingPage,
-        initial: true
     ),
     AutoRoute(
         path: 'top_countries',
@@ -36,6 +35,7 @@ import 'package:fire_mobile/pages/top_countries.dart';
       path: 'second',
       name: 'SecondOnboardingRouter',
       page: SecondOnboardingPage,
+      initial: true
     ),
     AutoRoute(
       path: 'my_fire',

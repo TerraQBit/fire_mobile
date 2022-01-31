@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         designSize: const Size(375, 850),
         builder: () => MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          title: 'Bottom Nav Bar with Nested Routing',
           routerDelegate: _appRouter.delegate(),
           routeInformationParser: _appRouter.defaultRouteParser(),
         ));
