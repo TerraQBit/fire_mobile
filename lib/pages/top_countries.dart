@@ -79,21 +79,24 @@ class _TopCountriesPageState extends State<TopCountriesPage> {
                             Padding(
                               padding: EdgeInsets.all(20.r),
                               child: GestureDetector(
+                                  child: Text('Top Countries', style: GoogleFonts.overpassMono(fontSize: 32, color: Colors.white),)
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(20.r),
+                              child: GestureDetector(
                                 child: SizedBox(
-                                  height: 30.r,
+                                  height: 25.r,
+                                  width: 25.r,
                                 ),
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20),
-                        child: Text('Top Countries', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig),),
-                      ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 40),
+                          padding: const EdgeInsets.only(top: 15),
                           child: ListView.builder(
                               itemCount: listNumber.length,
                               itemBuilder: (BuildContext context, int index) {

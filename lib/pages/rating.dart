@@ -47,337 +47,336 @@ class _RatingPageState extends State<RatingPage> {
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
-          child: Center(
-            child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/second_background.png"),
-                      fit: BoxFit.fill
-                  ),
+          child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/second_background.png"),
+                    fit: BoxFit.fill
                 ),
-                child: Center(
-                  child: Column (
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget> [
-                      Padding(
-                        padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(20.r),
-                              child: GestureDetector(
-                                onTap: () {
-                                  context.navigateTo(const MenuRouter());
-                                },
-                                child: SizedBox(
-                                  height: 25.r,
-                                  width: 25.r,
-                                  child: Image.asset('assets/left.png'),
-                                ),
-                              ),
+              ),
+              child: Column (
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget> [
+                  Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.all(20.r),
+                          child: GestureDetector(
+                            onTap: () {
+                              context.navigateTo(const MenuRouter());
+                            },
+                            child: SizedBox(
+                              height: 25.r,
+                              width: 25.r,
+                              child: Image.asset('assets/left.png'),
                             ),
-                            Padding(
-                              padding: EdgeInsets.all(20.r),
-                              child: GestureDetector(
-                                child: SizedBox(
-                                  height: 30.r,
-                                ),
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 10),
-                        child: Text('Rate', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: vbig),),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10, top: 10),
-                        child: Container(
-                            height: 60,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                    width: 1,
-                                    color: Color(0xffb7b7b7)
-                                )
+                        Padding(
+                          padding: EdgeInsets.all(20.r),
+                          child: GestureDetector(
+                              child: Text('Rate', style: GoogleFonts.overpassMono(fontSize: 32, color: Colors.white),)
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(20.r),
+                          child: GestureDetector(
+                            child: SizedBox(
+                              height: 25.r,
+                              width: 25.r,
                             ),
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Container(
+                        height: 60,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                width: 1,
+                                color: Color(0xffb7b7b7)
+                            )
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isChoosen = 0;
+                                  });
+                                },
+                                child: Text('World', style: isChoosen == 0 ? GoogleFonts.overpassMono(color: Colors.white, fontSize: small) : GoogleFonts.overpassMono(color: Color(0xffb7b7b7), fontSize: small)),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isChoosen = 1;
+                                  });
+                                },
+                                child: Text('Country', style: isChoosen == 1 ? GoogleFonts.overpassMono(color: Colors.white, fontSize: small) : GoogleFonts.overpassMono(color: Color(0xffb7b7b7), fontSize: small)),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isChoosen = 2;
+                                  });
+                                },
+                                child: Text('Friends', style: isChoosen == 2 ? GoogleFonts.overpassMono(color: Colors.white, fontSize: small) : GoogleFonts.overpassMono(color: Color(0xffb7b7b7), fontSize: small)),
+                              ),
+                            ],
+                          ),
+                        )
+                    ),
+                  ),
+                  isChoosen == 0 ?
+                  Expanded(
+                      child: ListView.builder(
+                          itemCount: listNumber.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.only(top: 0, bottom: 20, left: 10, right: 10),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      setState(() {
-                                        isChoosen = 0;
-                                      });
+                                      context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
                                     },
-                                    child: Text('World', style: isChoosen == 0 ? GoogleFonts.overpassMono(color: Colors.white, fontSize: small) : GoogleFonts.overpassMono(color: Color(0xffb7b7b7), fontSize: small)),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 5),
+                                          child: Container(
+                                            width: 80,
+                                            child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            print(index);
+                                          },
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: Image.asset('assets/avatar.png'),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 5),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                              Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        isChoosen = 1;
-                                      });
-                                    },
-                                    child: Text('Country', style: isChoosen == 1 ? GoogleFonts.overpassMono(color: Colors.white, fontSize: small) : GoogleFonts.overpassMono(color: Color(0xffb7b7b7), fontSize: small)),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        isChoosen = 2;
-                                      });
-                                    },
-                                    child: Text('Friends', style: isChoosen == 2 ? GoogleFonts.overpassMono(color: Colors.white, fontSize: small) : GoogleFonts.overpassMono(color: Color(0xffb7b7b7), fontSize: small)),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
                                   ),
                                 ],
                               ),
-                            )
-                        ),
-                      ),
-                      isChoosen == 0 ?
-                      Expanded(
-                        child: ListView.builder(
-                            itemCount: listNumber.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: EdgeInsets.only(top: 0, bottom: 20, left: 10, right: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
-                                      },
+                            );
+                          }
+                      )
+                  ) : SizedBox(),
+                  isChoosen == 1 ?
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      width: 1,
+                                      color: Color(0xffb7b7b7)
+                                  )
+                              ),
+                              height: 60,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: DropdownButton<String>(
+                                  value: value,
+                                  isExpanded: true,
+                                  icon: Image.asset('assets/down.png'),
+                                  underline: Container(
+                                    height: 0,
+                                  ),
+                                  style: GoogleFonts.overpassMono(color: Colors.white, fontSize: small),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      value = newValue!;
+                                    });
+                                  },
+                                  items: <String>['Russia', 'USA', 'Obama']
+                                      .map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
                                       child: Row(
+                                        mainAxisSize: MainAxisSize.max,
                                         children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(right: 5),
-                                            child: Container(
-                                              width: 80,
-                                              child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              print(index);
-                                            },
-                                            child: SizedBox(
-                                              height: 40,
-                                              child: Image.asset('assets/avatar.png'),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 5),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                                Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
-                                              ],
-                                            ),
-                                          ),
+                                          Text(value),
                                         ],
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(right: 10),
-                                      child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                    ),
-                                  ],
+                                    );
+                                  }).toList(),
                                 ),
-                              );
-                            }
-                        )
-                      ) : SizedBox(),
-                      isChoosen == 1 ?
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          width: 1,
-                                          color: Color(0xffb7b7b7)
-                                      )
-                                  ),
-                                  height: 60,
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 10),
-                                    child: DropdownButton<String>(
-                                      value: value,
-                                      isExpanded: true,
-                                      icon: Image.asset('assets/down.png'),
-                                      underline: Container(
-                                        height: 0,
-                                      ),
-                                      style: GoogleFonts.overpassMono(color: Colors.white, fontSize: small),
-                                      onChanged: (String? newValue) {
-                                        setState(() {
-                                          value = newValue!;
-                                        });
-                                      },
-                                      items: <String>['Russia', 'USA', 'Obama']
-                                          .map<DropdownMenuItem<String>>((String value) {
-                                        return DropdownMenuItem<String>(
-                                          value: value,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                                itemCount: listNumber.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Padding(
+                                    padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
+                                          },
                                           child: Row(
-                                            mainAxisSize: MainAxisSize.max,
                                             children: [
-                                              Text(value),
+                                              Padding(
+                                                padding: EdgeInsets.only(right: 5),
+                                                child: Container(
+                                                  width: 80,
+                                                  child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                child: SizedBox(
+                                                  height: 40,
+                                                  child: Image.asset('assets/avatar.png'),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.only(left: 5),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                                    Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
+                                                  ],
+                                                ),
+                                              ),
                                             ],
                                           ),
-                                        );
-                                      }).toList(),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 10),
+                                          child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ) : SizedBox(),
+                  isChoosen == 2 ?
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 0),
+                      child: ListView.builder(
+                          itemCount: listNumber.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.only(top: 0, bottom: 20, left: 10, right: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  GestureDetector(
+                                    onTap: (){
+                                      context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(right: 5),
+                                          child: Container(
+                                            width: 80,
+                                            child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
+                                          ),
+                                        ),
+                                        GestureDetector(
+                                          onTap: () {
+                                            print(index);
+                                          },
+                                          child: SizedBox(
+                                            height: 40,
+                                            child: Image.asset('assets/avatar.png'),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 5),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
+                                              Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ),
-                              ),
-                              Expanded(
-                                child: ListView.builder(
-                                    itemCount: listNumber.length,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding: EdgeInsets.only(right: 5),
-                                                    child: Container(
-                                                      width: 80,
-                                                      child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
-                                                    ),
-                                                  ),
-                                                  GestureDetector(
-                                                    child: SizedBox(
-                                                      height: 40,
-                                                      child: Image.asset('assets/avatar.png'),
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(left: 5),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                                        Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(right: 10),
-                                              child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    }
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ) : SizedBox(),
-                      isChoosen == 2 ?
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 0),
-                          child: ListView.builder(
-                              itemCount: listNumber.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
-                                  padding: EdgeInsets.only(top: 0, bottom: 20, left: 10, right: 10),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      GestureDetector(
-                                        onTap: (){
-                                          context.navigateTo(GuyRouter(name: listName[index], isFollow: false));
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsets.only(right: 5),
-                                              child: Container(
-                                                width: 80,
-                                                child: Text(listNumber[index], textAlign: TextAlign.end, style: GoogleFonts.overpassMono(color: Colors.white, fontWeight: FontWeight.bold, fontSize: big)),
-                                              ),
-                                            ),
-                                            GestureDetector(
-                                              onTap: () {
-                                                print(index);
-                                              },
-                                              child: SizedBox(
-                                                height: 40,
-                                                child: Image.asset('assets/avatar.png'),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 5),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(listName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                                  Text(listSurName[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little))
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 10),
-                                        child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 10),
+                                    child: Text(metres[index], style: GoogleFonts.overpassMono(color: Colors.white, fontSize: little)),
                                   ),
-                                );
-                              }
-                          ),
-                        ),
-                      ) : SizedBox(),
-                      Padding(
-                          padding: EdgeInsets.only(left: 10.r, right: 10.r, top: 12.r),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              SizedBox(
-                                height: 25.r,
-                                width: 25.r,
-                                child: Image.asset('assets/share.png'),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10.r),
-                                child: GlowText('Share my rate', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big),),
-                              )
-                            ],
-                          )
+                            );
+                          }
                       ),
-                      SizedBox(height: 20)
-                    ],
+                    ),
+                  ) : SizedBox(),
+                  Padding(
+                      padding: EdgeInsets.only(left: 10.r, right: 10.r, top: 12.r),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          SizedBox(
+                            height: 25.r,
+                            width: 25.r,
+                            child: Image.asset('assets/share.png'),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 10.r),
+                            child: GlowText('Share my rate', style: GoogleFonts.overpassMono(color: Colors.white, fontSize: big),),
+                          )
+                        ],
+                      )
                   ),
-                )
-            ),
-          ),
+                  SizedBox(height: 20)
+                ],
+              )
+          )
         )
     );
   }

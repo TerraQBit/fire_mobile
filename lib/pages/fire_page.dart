@@ -79,9 +79,9 @@ class _FirePageState extends State<FirePage> {
         body: ColorfulSafeArea(
           top: false,
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: selectedindex == 1 ? const AssetImage("assets/red_fire_back.png") : const AssetImage("assets/second_background.png"),
+                  image: AssetImage("assets/red_fire_back.png"),
                   fit: BoxFit.fill
               ),
             ),
@@ -127,7 +127,7 @@ class _FirePageState extends State<FirePage> {
                   ),
                 ),
                 const Spacer(),
-                Obx(() => Expanded(
+                Expanded(
                     flex: 5,
                     child: CarouselSlider(
                       options: CarouselOptions(
@@ -159,7 +159,6 @@ class _FirePageState extends State<FirePage> {
                         );
                       }).toList(),
                     )
-                )
                 ),
                 const Spacer(),
                 GestureDetector(

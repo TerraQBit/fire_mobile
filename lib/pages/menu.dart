@@ -60,7 +60,7 @@ class _MenuPageState extends State<MenuPage> {
                                   context.navigateTo(HomeRouter());
                                 },
                                 child: SizedBox(
-                                  height: 35.r,
+                                  height: 35,
                                   child: Image.asset('assets/x.png'),
                                 ),
                               ),

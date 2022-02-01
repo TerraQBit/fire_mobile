@@ -82,22 +82,23 @@ class _GuyPageState extends State<GuyPage> {
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
-          child: Center(
-            child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/guy_page_back.png"),
-                      fit: BoxFit.fill
-                  ),
+          child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("assets/guy_page_back.png"),
+                    fit: BoxFit.fill
                 ),
-                child: Column (
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget> [
-                    Row(
+              ),
+              child: Column (
+                mainAxisSize: MainAxisSize.max,
+                children: <Widget> [
+                  Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 20.r, right: 20.r, top: 20.r+MediaQuery.of(context).padding.top, bottom: 10.r),
+                          padding: EdgeInsets.only(top: 20.r-15, left: 20.r, right: 20.r, bottom: 20.r ),
                           child: GestureDetector(
                             onTap: () {
                               context.navigateTo(const RatingRouter());
@@ -110,79 +111,79 @@ class _GuyPageState extends State<GuyPage> {
                           ),
                         ),
                         Padding(
+                          padding: EdgeInsets.only(top: 15),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height > 600 ? 80 : 60,
+                            width: MediaQuery.of(context).size.height > 600 ? 80 : 60,
+                            child: Image.asset('assets/avatar.png'),
+                          ),
+                        ),
+                        Padding(
                           padding: EdgeInsets.all(20.r),
                           child: GestureDetector(
                             onTap: () {
-                              context.navigateTo(const HomeRouter());
+                              context.navigateTo(const RatingRouter());
                             },
                             child: SizedBox(
-                              height: 30.r,
-                              width: 30.r,
+                              height: 25.r,
+                              width: 25.r,
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
-                    Container(
-                      height: MediaQuery.of(context).size.height > 600 ? 80 : 60,
-                      width: MediaQuery.of(context).size.height > 600 ? 80 : 60,
-                      child: Image.asset('assets/avatar.png'),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20.r),
-                      child: Text(widget.name, style: GoogleFonts.montserrat(color: Colors.white,fontWeight: FontWeight.w500, fontSize: big),),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.r),
-                      child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.w500, fontSize: little),),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10.r),
-                      child: GlowText(widget.isFollow ? 'Follow' : 'Unfollow', style: GoogleFonts.montserrat(color: Colors.white, fontSize: small),),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: <Widget>[
-                          SizedBox(
-                            width: 82,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.r),
+                    child: Text(widget.name, style: GoogleFonts.montserrat(color: Colors.white,fontWeight: FontWeight.w500, fontSize: big),),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.r),
+                    child: Text('Russia', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.w500, fontSize: little),),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.r),
+                    child: GlowText(widget.isFollow ? 'Follow' : 'Unfollow', style: GoogleFonts.montserrat(color: Colors.white, fontSize: small),),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: <Widget>[
+                        const SizedBox(
+                          width: 82,
+                        ),
+                        SizedBox(
+                          child: SizedBox(
+                              child: Image.asset('assets/Frame.png')
                           ),
-                          SizedBox(
-                            child: Center(
-                              child: SizedBox(
-                                  width: MediaQuery.of(context).size.height > 700 ? 150 : 95.r,
-                                  child: Image.asset('assets/Frame.png')
-                              ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 70),
+                          child: Container(
+                            height: 30,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('69 metres', style: GoogleFonts.overpassMono(fontSize: 12, color: Colors.white)),
+                                Image.asset('assets/line.png')
+                              ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 70),
-                            child: Container(
-                              height: 30,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('69 metres', style: GoogleFonts.overpassMono(fontSize: 12, color: Colors.white)),
-                                  Image.asset('assets/line.png')
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        width: 130,
-                        child: Image.asset('assets/fire_button_true.png'),
-                      ),
-                    )
-                  ],
-                )
-            ),
-          ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SizedBox(
+                      width: 130,
+                      child: Image.asset('assets/fire_button_true.png'),
+                    ),
+                  )
+                ],
+              )
+          )
         )
     );
   }

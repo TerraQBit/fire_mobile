@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: ColorfulSafeArea(
           top: false,
-          child: Obx(() => Stack(
+          child: Stack(
             children: [
               Container(
                   decoration: const BoxDecoration(
@@ -173,24 +173,19 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Stack(
                           children: <Widget>[
-                            Obx(() {
-                              final color = fc.color;
-                              return Align(
-                                alignment: Alignment.topLeft,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 20.r, top: 12.r),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      print(color);
-                                    },
-                                    child: SizedBox(
-                                        width: 25,
-                                        child: Image.asset('assets/share.png')),
-                                  ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 20.r, top: 12.r),
+                                child: GestureDetector(
+                                  onTap: () {
+                                  },
+                                  child: SizedBox(
+                                      width: 25,
+                                      child: Image.asset('assets/share.png')),
                                 ),
-                              );
-                            }
+                              ),
                             ),
                             GestureDetector(
                               child: SizedBox(
@@ -430,7 +425,6 @@ class _HomePageState extends State<HomePage> {
               SizedBox()
             ],
           )
-          ),
         )
     );
   }

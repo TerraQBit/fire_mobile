@@ -4,7 +4,6 @@ import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:colorful_safe_area/colorful_safe_area.dart';
 import 'package:fire_mobile/navigation/router.gr.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -51,23 +50,23 @@ class MoneyElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                   width: 1.5,
-                  color: Color(0xffffffff)
+                  color: const Color(0xffffffff)
               )
           ),
           child: Column(
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 50),
+                padding: const EdgeInsets.symmetric(vertical: 50),
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: SizedBox(
                         height: 40,
                         child: Image.asset('assets/100.png'),
@@ -82,7 +81,7 @@ class MoneyElement extends StatelessWidget {
                   context.navigateTo(BuyBacksRouter(money: money));
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: Container(
                     alignment: Alignment.center,
                     height: 60,
@@ -91,7 +90,7 @@ class MoneyElement extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
                             width: 1.5,
-                            color: Color(0xffffffff)
+                            color: const Color(0xffffffff)
                         )
                     ),
                     child: Text(money + '\$', style: GoogleFonts.montserrat(color: Colors.white, fontWeight: FontWeight.bold, fontSize: little)),
@@ -119,6 +118,7 @@ class _ShopPageState extends State<ShopPage> {
   List names = ["Empire State Building", "Empire State Building2", "Empire State Building3"];
   List cost = ['69', '98', '122'];
   List metres = ['123', '88', '182'];
+  List unLock = [false, true, false];
 
   late DateTime now;
   late String HoursString;
@@ -209,7 +209,7 @@ class _ShopPageState extends State<ShopPage> {
                         padding: EdgeInsets.all(20.r),
                         child: GestureDetector(
                           child: SizedBox(
-                            height: 30.r,
+                            height: 40,
                           ),
                         ),
                       )
@@ -217,7 +217,7 @@ class _ShopPageState extends State<ShopPage> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: SizedBox(
                     width: 130,
                     child: Align(
@@ -312,8 +312,24 @@ class _ShopPageState extends State<ShopPage> {
                                 children: [
                                   SizedBox(
                                     height: 300,
-                                    child: pictures[i],
-                                  ),
+                                    child: Stack(
+                                      children: [
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: SizedBox(
+                                            height: 300,
+                                            child: pictures[i],
+                                          ),
+                                        ),
+                                        unLock[i] == false ?
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Image.asset('assets/close.png'),
+                                        ) :
+                                        const SizedBox()
+                                      ],
+                                    ),
+                                  )
                                 ],
                               );
                             },
@@ -323,7 +339,7 @@ class _ShopPageState extends State<ShopPage> {
                       Column(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(top: 25),
+                            padding: const EdgeInsets.only(top: 25),
                             child: SizedBox(
                               width: 200,
                               child: Text(
@@ -338,7 +354,7 @@ class _ShopPageState extends State<ShopPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 15),
+                            padding: const EdgeInsets.only(top: 15),
                             child: SizedBox(
                               width: 120,
                               child: Text(
@@ -353,21 +369,21 @@ class _ShopPageState extends State<ShopPage> {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 15),
+                            padding: const EdgeInsets.only(top: 15),
                             child: SizedBox(
                               width: 30,
                               child: Image.asset('assets/!.png'),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 25),
+                            padding: const EdgeInsets.symmetric(vertical: 25),
                             child: GestureDetector(
                               child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                         width: 1.5,
-                                        color: Color(0xffffffff)
+                                        color: const Color(0xffffffff)
                                     )
                                 ),
                                 alignment: Alignment.center,
